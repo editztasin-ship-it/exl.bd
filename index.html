@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Page Dashboard</title>
 
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#0b1020;
+  color:white;
+}
+
+.header{
+  padding:20px;
+  background:#11182d;
+  border-bottom:1px solid #27304a;
+}
+
+.header h1{
+  font-size:24px;
+}
+
+.header p{
+  color:#9ca7c2;
+  margin-top:6px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.search{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.search input{
+  flex:1;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #303b59;
+  background:#151d34;
+  color:white;
+  outline:none;
+}
+
+.search button{
+  padding:15px 22px;
+  border:0;
+  border-radius:10px;
+  background:#1877f2;
+  color:white;
+  font-weight:bold;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  background:#11182d;
+  border:1px solid #27304a;
+  border-radius:14px;
+  padding:20px;
+}
+
+.card h3{
+  color:#9ca7c2;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.number{
+  font-size:28px;
+  font-weight:bold;
+}
+
+.section{
+  margin-top:25px;
+}
+
+.section h2{
+  margin-bottom:15px;
+}
+
+.chart{
+  height:220px;
+  display:flex;
+  align-items:end;
+  gap:12px;
+  padding:20px;
+}
+
+.bar{
+  flex:1;
+  background:#1877f2;
+  border-radius:7px 7px 0 0;
+  min-height:30px;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.status{
+  color:#22c55e;
+  font-weight:bold;
+}
+
+@media(max-width:700px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info{
+    grid-template-columns:1fr;
+  }
+
+  .search{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>📊 Facebook Page Dashboard</h1>
+    <p>EXTREME LEGEND • Page Analytics</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="search">
+    <input id="pageUrl" type="text"
+      placeholder="Enter Facebook Page URL">
+    <button onclick="connectPage()">Connect Page</button>
+  </div>
+
+  <div id="message"></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>FOLLOWERS</h3>
+      <div class="number" id="followers">0</div>
+    </div>
+
+    <div class="card">
+      <h3>LIKES</h3>
+      <div class="number" id="likes">0</div>
+    </div>
+
+    <div class="card">
+      <h3>REACH</h3>
+      <div class="number" id="reach">0</div>
+    </div>
+
+    <div class="card">
+      <h3>ENGAGEMENT</h3>
+      <div class="number" id="engagement">0</div>
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <div class="card">
+
+      <h2>📈 Weekly Reach</h2>
+
+      <div class="chart">
+        <div class="bar" style="height:35%"></div>
+        <div class="bar" style="height:55%"></div>
+        <div class="bar" style="height:42%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar" style="height:60%"></div>
+        <div class="bar" style="height:85%"></div>
+        <div class="bar" style="height:75%"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <h2>📄 Page Information</h2>
+
+    <div class="info">
+
+      <div class="card">
+        <h3>PAGE URL</h3>
+        <p id="pageName">Not connected</p>
+      </div>
+
+      <div class="card">
+        <h3>CONNECTION STATUS</h3>
+        <p class="status" id="status">● Not Connected</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function connectPage(){
+
+  const url = document.getElementById("pageUrl").value.trim();
+
+  if(!url){
+    alert("Please enter your Facebook Page URL");
+    return;
+  }
+
+  document.getElementById("pageName").innerText = url;
+
+  document.getElementById("status").innerText =
+    "● Page URL Added";
+
+  document.getElementById("followers").innerText = "—";
+  document.getElementById("likes").innerText = "—";
+  document.getElementById("reach").innerText = "—";
+  document.getElementById("engagement").innerText = "—";
+
+  document.getElementById("message").innerHTML =
+    "<p style='color:#fbbf24;margin-bottom:15px'>⚠️ Facebook API connection is required to show real Page statistics.</p>";
+}
+
+</script>
+
+</body>
+  </html>
