@@ -36,11 +36,4 @@ export default async function handler(req, res) {
       pages: data.data || []
     });
 
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      error: "Facebook Pages API request failed",
-      details: error.message
-    });
-  }
-      }
+  
