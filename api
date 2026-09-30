@@ -1,2 +1,5 @@
-api
-└── auth
+api/
+├── auth/
+│   └── facebook.js
+└── facebook/
+    └── callback.js
